@@ -2,6 +2,7 @@ package com.vojkovladimir.world.ui;
 
 import android.app.LoaderManager;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Build;
@@ -21,6 +22,7 @@ import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.vojkovladimir.world.R;
 import com.vojkovladimir.world.provider.CityQuery;
+import com.vojkovladimir.world.ui.request.LoadRequestListener;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -33,7 +35,8 @@ public class CityActivity extends AppCompatActivity
     public static final String EXTRA_CITY_ID = "city_id";
 
     private long cityId;
-    private boolean locationEnabled;
+    private double latitude = -0.0f;
+    private double longitude = -0.0f;
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -78,7 +81,7 @@ public class CityActivity extends AppCompatActivity
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.map).setEnabled(locationEnabled);
+        menu.findItem(R.id.map).setEnabled(!(latitude == -0.0f && longitude == -0.0f));
         return true;
     }
 
@@ -89,9 +92,11 @@ public class CityActivity extends AppCompatActivity
                 finish();
                 return true;
             case R.id.map:
-                /*
-                * TODO: open map.
-                * */
+                Intent intent = new Intent(this, MapActivity.class);
+                intent.putExtra(MapActivity.EXTRA_CITY_NAME, mCollapsingToolbarLayout.getTitle());
+                intent.putExtra(MapActivity.EXTRA_LATITUDE, latitude);
+                intent.putExtra(MapActivity.EXTRA_LONGITUDE, longitude);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -116,16 +121,22 @@ public class CityActivity extends AppCompatActivity
                     int primaryDark = ContextCompat.getColor(this, R.color.colorPrimaryDark);
                     getWindow().setStatusBarColor(primaryDark);
                 }
+
             } else {
+                int color = ContextCompat.getColor(this, R.color.md_red_500);
                 mImage.clearColorFilter();
                 mRequestManager.load(data.getString(CityQuery.ColumnID.IMAGE_URL))
                         .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                         .thumbnail(0.5f)
                         .centerCrop()
+                        .listener(new LoadRequestListener(mImage, color))
                         .into(mImage);
             }
-            locationEnabled = !(data.isNull(CityQuery.ColumnID.LATITUDE)
-                    && data.isNull(CityQuery.ColumnID.LONGITUDE));
+            if (!(data.isNull(CityQuery.ColumnID.LATITUDE)
+                    && data.isNull(CityQuery.ColumnID.LONGITUDE))) {
+                latitude = data.getDouble(CityQuery.ColumnID.LATITUDE);
+                longitude = data.getDouble(CityQuery.ColumnID.LONGITUDE);
+            }
         }
         invalidateOptionsMenu();
     }

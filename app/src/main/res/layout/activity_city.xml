@@ -74,20 +74,13 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <ScrollView
+        <TextView
+            android:id="@+id/description"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context="com.vojkovladimir.world.ui.CityActivity"
-            tools:showIn="@layout/activity_city">
-
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/key_line_1_16dp"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-        </ScrollView>
+            android:layout_height="wrap_content"
+            android:padding="@dimen/key_line_1_16dp"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
     </android.support.v4.widget.NestedScrollView>
 

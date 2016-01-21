@@ -13,6 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_map_api_key" />
+
         <activity
             android:name=".ui.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -34,6 +39,10 @@
             android:name=".ui.CityActivity"
             android:label="@string/empty_space_title"
             android:theme="@style/AppTheme.TransparentStatus" />
+        <activity
+            android:name=".ui.MapActivity"
+            android:label="@string/empty_space_title"
+            android:theme="@style/AppTheme.Map" />
     </application>
 
 </manifest>

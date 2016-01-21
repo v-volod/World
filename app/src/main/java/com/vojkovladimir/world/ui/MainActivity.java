@@ -23,6 +23,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.vojkovladimir.world.R;
 import com.vojkovladimir.world.adapter.CursorRecyclerViewAdapter;
 import com.vojkovladimir.world.provider.CityQuery;
+import com.vojkovladimir.world.ui.request.LoadRequestListener;
 import com.vojkovladimir.world.ui.widget.SpaceItemDecoration;
 
 import butterknife.Bind;
@@ -139,6 +140,7 @@ public class MainActivity extends AppCompatActivity
             if (cursor.isNull(CityQuery.ColumnID.IMAGE_URL)) {
                 viewHolder.image.setColorFilter(RED);
                 viewHolder.image.setImageResource(R.drawable.ic_image_black_48dp);
+                viewHolder.image.setScaleType(ImageView.ScaleType.CENTER);
             } else {
                 viewHolder.image.clearColorFilter();
                 mRequestManager.load(cursor.getString(CityQuery.ColumnID.IMAGE_URL))
@@ -146,6 +148,7 @@ public class MainActivity extends AppCompatActivity
                         .thumbnail(0.5f)
                         .centerCrop()
                         .bitmapTransform(mTransformation)
+                        .listener(new LoadRequestListener(viewHolder.image, RED))
                         .into(viewHolder.image);
             }
 
