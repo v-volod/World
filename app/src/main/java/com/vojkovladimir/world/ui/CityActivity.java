@@ -97,6 +97,10 @@ public class CityActivity extends AppCompatActivity
                 intent.putExtra(MapActivity.EXTRA_LATITUDE, latitude);
                 intent.putExtra(MapActivity.EXTRA_LONGITUDE, longitude);
                 startActivity(intent);
+                overridePendingTransition(
+                        R.animator.activity_open_translate_right,
+                        R.animator.activity_close_alpha
+                );
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -144,5 +148,14 @@ public class CityActivity extends AppCompatActivity
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
 
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(
+                R.animator.activity_open_alpha,
+                R.animator.activity_close_translate_right
+        );
     }
 }

@@ -81,9 +81,6 @@ public class MainActivity extends AppCompatActivity
         ImageView image;
         @Bind(R.id.title)
         TextView title;
-
-        @Bind(R.id.map_button)
-        View mapButton;
         @Bind(R.id.map_image)
         ImageView mapImage;
 
@@ -169,6 +166,10 @@ public class MainActivity extends AppCompatActivity
             intent.putExtra(CityActivity.EXTRA_CITY_ID, id);
 
             startActivity(intent);
+            overridePendingTransition(
+                    R.animator.activity_open_translate_right,
+                    R.animator.activity_close_alpha
+            );
         }
 
         @Override

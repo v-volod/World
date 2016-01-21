@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/key_line_1_16dp"
     tools:context="com.vojkovladimir.world.ui.SplashActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_splash_screen"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/key_line_1_16dp"
+        android:shadowColor="@color/black"
+        android:shadowDy="2"
         android:text="@string/world"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-        android:textColor="?attr/colorPrimary"
+        android:textColor="@color/white"
         android:textStyle="bold" />
 
-</RelativeLayout>
+</FrameLayout>

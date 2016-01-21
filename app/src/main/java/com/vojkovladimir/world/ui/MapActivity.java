@@ -54,6 +54,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @OnClick(R.id.back)
     void onBack() {
         finish();
+        overridePendingTransition(
+                R.animator.activity_open_alpha,
+                R.animator.activity_close_translate_right
+        );
     }
 
     @Override
@@ -64,4 +68,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 .title(cityName)).showInfoWindow();
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(
+                R.animator.activity_open_alpha,
+                R.animator.activity_close_translate_right
+        );
+    }
 }

@@ -24,4 +24,13 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, SPLASH_DELAY);
     }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(
+                R.animator.activity_open_alpha,
+                R.animator.activity_close_alpha
+        );
+    }
 }
