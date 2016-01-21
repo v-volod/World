@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card"
+    style="@style/Card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.percent.PercentFrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--suppress AndroidDomInspection -->
+            <ImageView
+                android:id="@+id/image"
+                android:scaleType="center"
+                app:layout_aspectRatio="178%"
+                app:layout_widthPercent="100%"
+                tools:ignore="ContentDescription" />
+        </android.support.percent.PercentFrameLayout>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/key_line_1_16dp"
+            android:layout_marginLeft="@dimen/key_line_1_16dp"
+            android:layout_marginRight="@dimen/key_line_1_16dp"
+            android:layout_marginTop="@dimen/key_line_2_24dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/card_title_large" />
+
+        <FrameLayout
+            android:id="@+id/map_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginBottom="@dimen/key_line_8dp"
+            android:layout_marginRight="@dimen/key_line_8dp"
+            android:padding="@dimen/key_line_8dp"
+            tools:ignore="RtlHardcoded">
+
+            <ImageView
+                android:id="@+id/map_image"
+                android:layout_width="@dimen/key_line_2_24dp"
+                android:layout_height="@dimen/key_line_2_24dp"
+                android:src="@drawable/ic_map_black_24dp"
+                tools:ignore="ContentDescription" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
