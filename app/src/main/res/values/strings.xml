@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">World</string>
     <string name="world">World</string>
+    <string name="empty_space_title">" "</string>
+    <string name="map">Map</string>
 </resources>

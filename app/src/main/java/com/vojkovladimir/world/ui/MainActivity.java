@@ -2,6 +2,7 @@ package com.vojkovladimir.world.ui;
 
 import android.app.LoaderManager;
 import android.content.CursorLoader;
+import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity
 
         @OnClick(R.id.card)
         void onCardClick() {
-            mListener.onCardClicked(getAdapterPosition());
+            mListener.onCardClicked(getItemId());
         }
 
         @OnLongClick(R.id.card)
@@ -106,7 +107,8 @@ public class MainActivity extends AppCompatActivity
         }
 
         interface OnCardInteractionListener {
-            void onCardClicked(int position);
+
+            void onCardClicked(long id);
 
             void onCardLongClick(int position);
         }
@@ -114,6 +116,10 @@ public class MainActivity extends AppCompatActivity
 
     private class CitiesAdapter extends CursorRecyclerViewAdapter<CityVH>
             implements CityVH.OnCardInteractionListener {
+
+        public CitiesAdapter() {
+            setHasStableIds(true);
+        }
 
         final int GREEN = ContextCompat.getColor(getApplicationContext(), R.color.md_green_500);
         final int RED = ContextCompat.getColor(getApplicationContext(), R.color.md_red_500);
@@ -155,10 +161,11 @@ public class MainActivity extends AppCompatActivity
         }
 
         @Override
-        public void onCardClicked(int position) {
-            /*
-            * ToDo: open details
-            * */
+        public void onCardClicked(long id) {
+            Intent intent = new Intent(getApplicationContext(), CityActivity.class);
+            intent.putExtra(CityActivity.EXTRA_CITY_ID, id);
+
+            startActivity(intent);
         }
 
         @Override

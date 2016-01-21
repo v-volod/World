@@ -30,6 +30,10 @@
             android:exported="false" />
 
         <activity android:name=".ui.MainActivity" />
+        <activity
+            android:name=".ui.CityActivity"
+            android:label="@string/empty_space_title"
+            android:theme="@style/AppTheme.TransparentStatus" />
     </application>
 
 </manifest>
