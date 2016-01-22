@@ -19,6 +19,7 @@
             <!--suppress AndroidDomInspection -->
             <ImageView
                 android:id="@+id/image"
+                android:background="#2a000000"
                 android:scaleType="center"
                 app:layout_aspectRatio="178%"
                 app:layout_widthPercent="100%"

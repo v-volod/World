@@ -41,12 +41,6 @@
 # Cardview
 -keep class android.support.v7.widget.RoundRectDrawable { *; }
 
-## Google Play Services 4.3.23 specific rules ##
-## https://developer.android.com/google/play-services/setup.html#Proguard ##
--keep class * extends java.util.ListResourceBundle {
-    protected Object[][] getContents();
-}
-
 -keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable {
     public static final *** NULL;
 }
@@ -72,5 +66,3 @@
 -keepclasseswithmembernames class * {
     @butterknife.* <methods>;
 }
-
--dontwarn jp.co.cyberagent.android.gpuimage.**

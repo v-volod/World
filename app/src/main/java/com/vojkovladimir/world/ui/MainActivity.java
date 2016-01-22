@@ -30,7 +30,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnLongClick;
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MainActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -124,12 +123,6 @@ public class MainActivity extends AppCompatActivity
 
         LayoutInflater mInflater = LayoutInflater.from(getApplicationContext());
         RequestManager mRequestManager = Glide.with(getApplicationContext());
-        RoundedCornersTransformation mTransformation = new RoundedCornersTransformation(
-                getApplicationContext(),
-                getResources().getDimensionPixelOffset(R.dimen.cardview_default_radius),
-                0,
-                RoundedCornersTransformation.CornerType.TOP
-        );
 
         @Override
         public void onBindViewHolder(CityVH viewHolder, Cursor cursor) {
@@ -144,7 +137,6 @@ public class MainActivity extends AppCompatActivity
                         .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                         .thumbnail(0.5f)
                         .centerCrop()
-                        .bitmapTransform(mTransformation)
                         .listener(new LoadRequestListener(viewHolder.image, RED))
                         .into(viewHolder.image);
             }
